@@ -2,23 +2,39 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CPU Cooler - GearUp</title>
 <style>
-body{background:#0a0a0f;color:#fff;font-family:'Roboto',sans-serif;padding:40px;text-align:center;}
-h1{color:#00f0ff;margin-bottom:20px;}
-ul{list-style:none;padding:0;max-width:600px;margin:0 auto;}
-li{padding:10px;border-bottom:1px solid #333;}
-a{color:#00f0ff;text-decoration:none;display:inline-block;margin-top:20px;}
+body{background:#0a0a0f;color:#fff;font-family:'Roboto',sans-serif;padding:20px;text-align:center;}
+h3{color:#00f0ff;margin-bottom:20px;text-shadow:0 0 10px #00f0ff;}
+.container{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;}
+.card{background:#1a1a2e;border:2px solid #00f0ff;border-radius:12px;padding:20px;width:200px;transition:0.3s;cursor:pointer;}
+.card:hover{box-shadow:0 0 15px #00f0ff,0 0 30px #00f0ff;transform:translateY(-5px);}
+.card h4{color:#00f0ff;margin-bottom:10px;}
+.card p{color:#ccc;margin-bottom:15px;}
+.card button{padding:10px 15px;border:none;border-radius:8px;background:#00f0ff;color:#0a0a0f;font-weight:bold;cursor:pointer;transition:0.3s;}
+.card button:hover{background:#00cfff;}
 </style>
 </head>
 <body>
-<h1>CPU Cooler disponibili</h1>
-<ul>
-<li>Noctua NH-D15</li>
-<li>Corsair iCUE H150i</li>
-<li>be quiet! Dark Rock 4</li>
-</ul>
-<a href="componenti-pc.html">← Torna indietro</a>
+
+<h3>CPU Cooler disponibili</h3>
+<div class="container">
+    <div class="card">
+        <h4>Noctua NH-D15</h4>
+        <p>Prezzo: €99</p>
+        <button>Acquista</button>
+    </div>
+    <div class="card">
+        <h4>Corsair iCUE H150i</h4>
+        <p>Prezzo: €159</p>
+        <button>Acquista</button>
+    </div>
+    <div class="card">
+        <h4>be quiet! Dark Rock 4</h4>
+        <p>Prezzo: €89</p>
+        <button>Acquista</button>
+    </div>
+</div>
+
 </body>
 </html>
