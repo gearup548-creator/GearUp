@@ -14,16 +14,15 @@ nav a{color:#fff;margin-left:30px;text-decoration:none;font-weight:500;transitio
 nav a:hover{color:#00f0ff;text-shadow:0 0 10px #00f0ff,0 0 20px #00f0ff;}
 section{padding:80px 20px;text-align:center;}
 section h2{font-family:'Orbitron',sans-serif;font-size:3em;color:#00f0ff;margin-bottom:20px;text-shadow:0 0 10px #00f0ff;}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;padding:50px;}
-.product-card{background:#1a1a2e;border:1px solid #00f0ff;border-radius:15px;overflow:hidden;transition:transform 0.3s, box-shadow 0.3s;}
-.product-card:hover{transform:translateY(-10px);box-shadow:0 0 20px #00f0ff,0 0 40px #00f0ff,0 0 60px #00f0ff;}
-.product-info{padding:20px;}
-.product-info h3{font-family:'Orbitron',sans-serif;margin-bottom:10px;color:#00f0ff;transition:text-shadow 0.3s;}
-.product-card:hover .product-info h3{text-shadow:0 0 10px #00f0ff,0 0 20px #0ff0f0;}
-.product-info p{font-size:0.95em;color:#ccc;margin-bottom:15px;}
-.product-info button{padding:10px 20px;border:none;border-radius:10px;background:linear-gradient(90deg,#00f0ff,#0ff0f0);color:#0a0a0f;font-weight:bold;cursor:pointer;transition:0.3s,box-shadow 0.3s;}
-.product-info button:hover{background:linear-gradient(90deg,#0ff0f0,#00f0ff);transform:scale(1.05);box-shadow:0 0 10px #00f0ff,0 0 20px #0ff0f0,0 0 30px #00f0ff;}
 footer{text-align:center;padding:30px;border-top:2px solid #00f0ff;color:#aaa;}
+
+/* Dropdown */
+.dropdown-container{margin-top:40px;}
+.dropdown-container label{display:block;margin-bottom:15px;font-family:'Orbitron',sans-serif;font-size:1.5em;color:#00f0ff;}
+.dropdown-container select{padding:12px 20px;border-radius:12px;border:2px solid #00f0ff;background:#1a1a2e;color:#fff;font-size:1em;cursor:pointer;transition:0.3s;}
+.dropdown-container select:hover{box-shadow:0 0 10px #00f0ff,0 0 20px #00f0ff;}
+.categoria-output{margin-top:40px;font-size:1.2em;color:#ccc;}
+
 @media(max-width:768px){header{flex-direction:column;text-align:center;} nav a{margin:10px;} section h2{font-size:2em;}}
 </style>
 </head>
@@ -43,27 +42,49 @@ footer{text-align:center;padding:30px;border-top:2px solid #00f0ff;color:#aaa;}
 
 <section>
 <h2>Componenti PC</h2>
-<div class="products">
-    <div class="product-card">
-        <div class="product-info">
-            <h3>Scheda madre X1000</h3>
-            <p>Prestazioni elevate e compatibilità completa.</p>
-            <button>Aggiungi al carrello</button>
-        </div>
-    </div>
-    <div class="product-card">
-        <div class="product-info">
-            <h3>RAM 32GB Neon</h3>
-            <p>Illuminazione RGB e velocità ultra rapida.</p>
-            <button>Aggiungi al carrello</button>
-        </div>
-    </div>
+
+<div class="dropdown-container">
+    <label for="categorie">Scegli una categoria:</label>
+    <select id="categorie" onchange="mostraCategoria()">
+        <option value="">-- Seleziona --</option>
+        <option value="cpu">Processori</option>
+        <option value="gpu">Schede Video</option>
+        <option value="ram">Memorie RAM</option>
+        <option value="storage">Storage (SSD/HDD)</option>
+    </select>
 </div>
+
+<div id="categoria-output" class="categoria-output"></div>
+
 </section>
 
 <footer>
 &copy; 2026 GearUp. Tutti i diritti riservati.
 </footer>
+
+<script>
+function mostraCategoria(){
+    const valore = document.getElementById("categorie").value;
+    const output = document.getElementById("categoria-output");
+
+    switch(valore){
+        case "cpu":
+            output.innerHTML = "Hai selezionato: <b>Processori</b>";
+            break;
+        case "gpu":
+            output.innerHTML = "Hai selezionato: <b>Schede Video</b>";
+            break;
+        case "ram":
+            output.innerHTML = "Hai selezionato: <b>Memorie RAM</b>";
+            break;
+        case "storage":
+            output.innerHTML = "Hai selezionato: <b>Storage (SSD/HDD)</b>";
+            break;
+        default:
+            output.innerHTML = "";
+    }
+}
+</script>
 
 </body>
 </html>
