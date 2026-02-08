@@ -47,14 +47,15 @@ footer{text-align:center;padding:30px;border-top:2px solid #00f0ff;color:#aaa;}
     <label for="categorie">Scegli una categoria:</label>
     <select id="categorie" onchange="mostraCategoria()">
         <option value="">-- Seleziona --</option>
-        <option value="cpu">Processori</option>
-        <option value="gpu">Schede Video</option>
-        <option value="ram">Memorie RAM</option>
-        <option value="storage">Storage (SSD/HDD)</option>
+        <option value="cpu">CPU</option>
+        <option value="cooler">CPU Cooler</option>
+        <option value="ram">RAM</option>
+        <option value="motherboard">Scheda madre</option>
     </select>
 </div>
 
 <div id="categoria-output" class="categoria-output"></div>
+<div id="prodotti" class="prodotti"></div>
 
 </section>
 
@@ -62,27 +63,50 @@ footer{text-align:center;padding:30px;border-top:2px solid #00f0ff;color:#aaa;}
 &copy; 2026 GearUp. Tutti i diritti riservati.
 </footer>
 
+<style>
+.prodotti{display:flex;flex-wrap:wrap;gap:25px;justify-content:center;margin-top:40px}
+.card{background:#111827;border:1px solid #00f0ff;border-radius:18px;padding:20px;width:220px;transition:0.3s}
+.card:hover{transform:translateY(-6px);box-shadow:0 0 20px #00f0ff}
+.card h3{color:#00f0ff;margin-bottom:10px}
+.card p{color:#ccc;font-size:0.95em}
+</style>
 <script>
-function mostraCategoria(){
-    const valore = document.getElementById("categorie").value;
-    const output = document.getElementById("categoria-output");
+const database = {
+ cpu:[
+  {nome:"Ryzen 5 5600X",desc:"Ottimo per gaming 1080p"},
+  {nome:"Intel i5‑12400F",desc:"Prestazioni eccellenti qualità/prezzo"},
+  {nome:"Ryzen 7 7800X3D",desc:"Top per gaming competitivo"}
+ ],
+ cooler:[
+  {nome:"Cooler Master Hyper 212",desc:"Economico e affidabile"},
+  {nome:"DeepCool AK400",desc:"Silenzioso"},
+  {nome:"NZXT Kraken 240",desc:"A liquido RGB"}
+ ],
+ ram:[
+  {nome:"Corsair Vengeance 16GB",desc:"DDR4 perfetta per gaming"},
+  {nome:"Kingston Fury 32GB",desc:"Multitasking pesante"},
+  {nome:"G.Skill Trident Z",desc:"RGB ad alte prestazioni"}
+ ],
+ motherboard:[
+  {nome:"MSI B550 Tomahawk",desc:"Ryzen stabile"},
+  {nome:"ASUS TUF B760",desc:"Intel affidabile"},
+  {nome:"Gigabyte X670 Aorus",desc:"Alta gamma"}
+ ]
+};
 
-    switch(valore){
-        case "cpu":
-            output.innerHTML = "Hai selezionato: <b>Processori</b>";
-            break;
-        case "gpu":
-            output.innerHTML = "Hai selezionato: <b>Schede Video</b>";
-            break;
-        case "ram":
-            output.innerHTML = "Hai selezionato: <b>Memorie RAM</b>";
-            break;
-        case "storage":
-            output.innerHTML = "Hai selezionato: <b>Storage (SSD/HDD)</b>";
-            break;
-        default:
-            output.innerHTML = "";
-    }
+function mostraCategoria(){
+ const valore=document.getElementById("categorie").value;
+ const output=document.getElementById("categoria-output");
+ const prodotti=document.getElementById("prodotti");
+ prodotti.innerHTML="";
+ if(!valore){output.innerHTML="";return;}
+ output.innerHTML="Hai selezionato: <b>"+document.querySelector('#categorie option:checked').textContent+"</b>";
+ database[valore].forEach(item=>{
+   const card=document.createElement('div');
+   card.className='card';
+   card.innerHTML=`<h3>${item.nome}</h3><p>${item.desc}</p>`;
+   prodotti.appendChild(card);
+ });
 }
 </script>
 
