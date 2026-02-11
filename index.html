@@ -96,7 +96,7 @@
 
 <footer>&copy; 2026 FuturoShop. Tutti i diritti riservati.</footer>
 
-<!-- Supabase -->
+<!-- Supabase: sempre DOPO il form -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
   // Sostituisci con i tuoi dati Supabase
@@ -108,13 +108,22 @@
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    const { data, error } = await supabase.auth.signUp({ email, password });
+    if (!email || !password) {
+      alert("Inserisci email e password!");
+      return;
+    }
 
-    if (error) alert(error.message);
-    else alert("Registrazione riuscita!");
+    try {
+      const { data, error } = await supabase.auth.signUp({ email, password });
+
+      if (error) throw error;
+
+      alert("Registrazione riuscita! Controlla la tua email per confermare l'account.");
+    } catch (err) {
+      alert("Errore: " + err.message);
+    }
   }
 </script>
 
 </body>
 </html>
-
